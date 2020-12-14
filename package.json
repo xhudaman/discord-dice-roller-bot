@@ -11,9 +11,36 @@
     "discord.js": "^12.5.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.10",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3",
     "nodemon": "^2.0.6"
   },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest",
+      "^.+\\.mjs$": "babel-jest"
+    },
+    "testPathIgnorePatterns": [
+      "<rootDir>/build/",
+      "<rootDir>/node_modules/"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "mjs"
+    ]
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env"
+      ]
+    ]
+  },
   "scripts": {
-    "start": "nodemon index.mjs"
+    "start": "nodemon index.mjs",
+    "test": "jest"
   }
 }
