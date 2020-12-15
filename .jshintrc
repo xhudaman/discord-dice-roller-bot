@@ -12,7 +12,7 @@
   "maxparams": 4,
   "noarg": true,
   "nonew": true,
-  "regexpu": true,
+  "regexpu": false,
   "shadow": "outer",
   "undef": true,
   "unused": true,
