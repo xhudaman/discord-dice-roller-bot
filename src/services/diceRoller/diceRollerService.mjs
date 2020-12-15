@@ -37,7 +37,6 @@ const diceRoller = input => {
 
   const individualRolls = splitInputToDiceRolls(input).reduce(
     (accumulator, currentValue) => {
-      console.log({ currentValue });
       let dice = currentValue.match(diceSyntaxRegex)[0];
 
       let modifiers = currentValue.match(modifierRegex);

@@ -16,16 +16,12 @@ discordClient.on("message", message => {
     .trim()
     .split(/(?<=roll|r) +/);
 
-  console.log({ message: message.content, args });
   const command = args.shift().toLowerCase();
 
-  console.log({ args, command });
   if (command === "roll" || "r") {
-    // Do the thing Zhu Li
+    // Zhu Li, do the thing!
     let diceRollString = args[0];
-    console.log({ diceRollString });
     let resultOfRoll = roll(diceRollString);
-    console.log({ resultOfRoll });
     message.channel.send(
       `@${message.author.username} rolled ${JSON.stringify(resultOfRoll)}`
     );
