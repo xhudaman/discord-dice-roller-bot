@@ -3,7 +3,7 @@ const getRandNum = (lowerLimit, upperLimit) =>
 
 const diceRoller = input => {
   // captures syntax 1d20+1 and any variation of it up to 3 digit dice sizes with a min of 1 die
-  const diceAndModifiersRegex = /(\d+\d{1,3})(((\+|\-)\d+)+)?/gi;
+  const diceAndModifiersRegex = /(\d{1,3}d\d{1,3})(((\+|\-)\d+)+)?/gi;
 
   // captures the dice syntax from the dice and modifier group i.e. 1d20 from 1d20+1
   const diceSyntaxRegex = /\d{1,3}d\d{1,3}/gi;
@@ -25,6 +25,7 @@ const diceRoller = input => {
 
   const individualRolls = splitInputToDiceRolls(input).reduce(
     (accumulator, currentValue) => {
+      console.log({ currentValue });
       let dice = currentValue.match(diceSyntaxRegex)[0];
 
       let modifiers = currentValue.match(modifierRegex);
