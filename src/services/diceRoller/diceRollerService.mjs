@@ -1,5 +1,17 @@
-const getRandNum = (lowerLimit, upperLimit) =>
-  Math.floor(Math.random() * upperLimit) + lowerLimit;
+export const getRandNum = (lowerLimit, upperLimit) => {
+  if (!lowerLimit || !upperLimit) {
+    return new TypeError("Missing input!");
+  }
+  if (lowerLimit < 1) {
+    return new Error("lowerLimit must be 1 or greater!");
+  }
+  if (lowerLimit >= upperLimit) {
+    return new Error(
+      "lowerLimit cannot be greater than or equal to upperLimit!"
+    );
+  }
+  return Math.floor(Math.random() * upperLimit) + lowerLimit;
+};
 
 const diceRoller = input => {
   // captures syntax 1d20+1 and any variation of it up to 3 digit dice sizes with a min of 1 die

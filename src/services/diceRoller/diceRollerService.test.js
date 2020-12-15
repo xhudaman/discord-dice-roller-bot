@@ -1,4 +1,4 @@
-import roll from "./diceRoller";
+import roll, { getRandNum } from "./diceRollerService";
 
 describe("dice roller", () => {
   test("null, false, undefined, and empty string returns error", () => {
@@ -97,5 +97,43 @@ describe("dice roller", () => {
     expect(result[0].d20).toHaveLength(1);
     expect(result[1].d10).toHaveLength(1);
     expect(result[0].modifiers).toHaveLength(0);
+  });
+});
+
+describe("getRandNum", () => {
+  test("getRandNum null, undefined, false, and empty input returns error", () => {
+    [null, false, undefined, ""].forEach(value => {
+      expect(getRandNum(value, 20)).toStrictEqual(
+        new TypeError("Missing input!")
+      );
+      expect(getRandNum(1, value)).toStrictEqual(
+        new TypeError("Missing input!")
+      );
+    });
+  });
+
+  test("getRandNum with valid input generates number between given values", () => {
+    const result = getRandNum(1, 20);
+    expect(result).toBeGreaterThanOrEqual(1);
+    expect(result).toBeLessThanOrEqual(20);
+
+    const secondaryResult = getRandNum(1, 100);
+    expect(secondaryResult).toBeGreaterThanOrEqual(1);
+    expect(secondaryResult).toBeLessThanOrEqual(100);
+
+    const tertiaryResult = getRandNum(1, 8);
+    expect(tertiaryResult).toBeGreaterThanOrEqual(1);
+    expect(tertiaryResult).toBeLessThanOrEqual(8);
+  });
+
+  test("returns error if lowerLimit is greater than upperLimit", () => {
+    expect(getRandNum(20, 1)).toStrictEqual(
+      new Error("lowerLimit cannot be greater than or equal to upperLimit!")
+    );
+  });
+  test("returns error if lowerLimit is equal to upperLimit", () => {
+    expect(getRandNum(10, 10)).toStrictEqual(
+      new Error("lowerLimit cannot be greater than or equal to upperLimit!")
+    );
   });
 });

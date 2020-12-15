@@ -1,6 +1,6 @@
 import Discord from "discord.js";
 const clientAuthToken = process.env.DISCORD_CLIENT_AUTH_TOKEN;
-import roll from "./diceRoller.mjs";
+import roll from "./src/services/diceRoller/diceRollerService.mjs";
 
 const discordClient = new Discord.Client();
 
