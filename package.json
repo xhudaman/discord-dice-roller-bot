@@ -1,7 +1,7 @@
 {
   "name": "tymora",
   "version": "1.0.0",
-  "description": "Disord dice rolling bot based off the nightbot dice roller by https://github.com/patferguson",
+  "description": "Discord dice rolling bot created for my discord community",
   "main": "index.js",
   "repository": "git@github.com:xhudaman/discord-dice-roller-bot.git",
   "author": "Matthew Edell",
