@@ -1,4 +1,4 @@
-import roll, { getRandNum } from "./diceRollerService";
+import roll, { getRandNum, getTotalFromRolls } from "./diceRollerService";
 
 describe("dice roller", () => {
   test("null, false, undefined, and empty string returns error", () => {
@@ -135,5 +135,79 @@ describe("getRandNum", () => {
     expect(getRandNum(10, 10)).toStrictEqual(
       new Error("lowerLimit cannot be greater than or equal to upperLimit!")
     );
+  });
+});
+
+describe("getTotalFromRoll", () => {
+  test("null, undefined, false, and empty inputs return error", () => {
+    [null, false, undefined, ""].forEach(value => {
+      expect(getTotalFromRolls(value)).toStrictEqual(
+        new TypeError("Missing rolls!")
+      );
+    });
+  });
+
+  test("rolls with single die return correct result", () => {
+    let rolls = [
+      {
+        d20: 15,
+        modifiers: []
+      }
+    ];
+
+    const result = getTotalFromRolls(rolls);
+    expect(result).toBe(15);
+  });
+
+  test("rolls with single die and positive modifier return correct result", () => {
+    let rolls = [
+      {
+        d20: 10,
+        modifiers: [4]
+      }
+    ];
+
+    const result = getTotalFromRolls(rolls);
+    expect(result).toBe(14);
+  });
+
+  test("rolls with single die and negative modifier return correct result", () => {
+    let rolls = [
+      {
+        d20: 18,
+        modifiers: [-3]
+      }
+    ];
+
+    const result = getTotalFromRolls(rolls);
+    expect(result).toBe(15);
+  });
+
+  test("rolls with single die and multiple modifiers return correct result", () => {
+    let rolls = [
+      {
+        d20: 18,
+        modifiers: [-4, 1]
+      }
+    ];
+
+    const result = getTotalFromRolls(rolls);
+    expect(result).toBe(15);
+  });
+
+  test("rolls with multiple dice return correct result", () => {
+    let rolls = [
+      {
+        d20: 13,
+        modifiers: [2]
+      },
+      {
+        d8: 7,
+        modifiers: [-2]
+      }
+    ];
+
+    const result = getTotalFromRolls(rolls);
+    expect(result).toBe(20);
   });
 });
