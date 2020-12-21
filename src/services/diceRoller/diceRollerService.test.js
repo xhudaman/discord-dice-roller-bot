@@ -150,7 +150,7 @@ describe("getTotalFromRoll", () => {
   test("rolls with single die return correct result", () => {
     let rolls = [
       {
-        d20: 15,
+        d20: [15],
         modifiers: []
       }
     ];
@@ -162,7 +162,7 @@ describe("getTotalFromRoll", () => {
   test("rolls with single die and positive modifier return correct result", () => {
     let rolls = [
       {
-        d20: 10,
+        d20: [10],
         modifiers: [4]
       }
     ];
@@ -174,7 +174,7 @@ describe("getTotalFromRoll", () => {
   test("rolls with single die and negative modifier return correct result", () => {
     let rolls = [
       {
-        d20: 18,
+        d20: [18],
         modifiers: [-3]
       }
     ];
@@ -186,7 +186,7 @@ describe("getTotalFromRoll", () => {
   test("rolls with single die and multiple modifiers return correct result", () => {
     let rolls = [
       {
-        d20: 18,
+        d20: [18],
         modifiers: [-4, 1]
       }
     ];
@@ -198,11 +198,11 @@ describe("getTotalFromRoll", () => {
   test("rolls with multiple dice return correct result", () => {
     let rolls = [
       {
-        d20: 13,
+        d20: [13],
         modifiers: [2]
       },
       {
-        d8: 7,
+        d8: [7],
         modifiers: [-2]
       }
     ];

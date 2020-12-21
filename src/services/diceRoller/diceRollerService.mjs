@@ -26,7 +26,7 @@ export const getTotalFromRolls = rolls => {
           total += currentValue[key][i];
         }
       } else {
-        total += currentValue[key];
+        total += currentValue[key].reduce((acc, curr) => acc + curr, 0);
       }
     });
 
