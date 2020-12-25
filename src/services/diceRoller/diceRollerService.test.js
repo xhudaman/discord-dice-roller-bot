@@ -1,14 +1,18 @@
 import roll, { getRandNum, getTotalFromRolls } from "./diceRollerService";
 
 describe("dice roller", () => {
-  test("null, false, undefined, and empty string returns error", () => {
+  test("null, false, undefined, and empty string throws error", () => {
     [null, false, undefined, ""].forEach(value => {
-      expect(roll(value)).toStrictEqual(new TypeError(`Missing input!`));
+      expect(() => {
+        roll(value);
+      }).toThrow(new TypeError(`Missing input!`));
     });
   });
 
-  test("invalid input format returns error", () => {
-    expect(roll("1dd2+1")).toStrictEqual(new Error("Invalid input format!"));
+  test("invalid input format throws error", () => {
+    expect(() => {
+      roll("1dd2+1");
+    }).toThrow(new Error("Invalid input format!"));
   });
 
   test("input with one die returns correct format", () => {
@@ -101,14 +105,14 @@ describe("dice roller", () => {
 });
 
 describe("getRandNum", () => {
-  test("getRandNum null, undefined, false, and empty input returns error", () => {
+  test("getRandNum null, undefined, false, and empty input throws error", () => {
     [null, false, undefined, ""].forEach(value => {
-      expect(getRandNum(value, 20)).toStrictEqual(
-        new TypeError("Missing input!")
-      );
-      expect(getRandNum(1, value)).toStrictEqual(
-        new TypeError("Missing input!")
-      );
+      expect(() => {
+        getRandNum(value, 20);
+      }).toThrow(new TypeError("Missing input!"));
+      expect(() => {
+        getRandNum(1, value);
+      }).toThrow(new TypeError("Missing input!"));
     });
   });
 
@@ -126,13 +130,18 @@ describe("getRandNum", () => {
     expect(tertiaryResult).toBeLessThanOrEqual(8);
   });
 
-  test("returns error if lowerLimit is greater than upperLimit", () => {
-    expect(getRandNum(20, 1)).toStrictEqual(
+  test("throws error if lowerLimit is greater than upperLimit", () => {
+    expect(() => {
+      getRandNum(20, 1);
+    }).toThrow(
       new Error("lowerLimit cannot be greater than or equal to upperLimit!")
     );
   });
-  test("returns error if lowerLimit is equal to upperLimit", () => {
-    expect(getRandNum(10, 10)).toStrictEqual(
+
+  test("throws error if lowerLimit is equal to upperLimit", () => {
+    expect(() => {
+      getRandNum(10, 10);
+    }).toThrow(
       new Error("lowerLimit cannot be greater than or equal to upperLimit!")
     );
   });
@@ -141,9 +150,9 @@ describe("getRandNum", () => {
 describe("getTotalFromRoll", () => {
   test("null, undefined, false, and empty inputs return error", () => {
     [null, false, undefined, ""].forEach(value => {
-      expect(getTotalFromRolls(value)).toStrictEqual(
-        new TypeError("Missing rolls!")
-      );
+      expect(() => {
+        getTotalFromRolls(value);
+      }).toThrow(new TypeError("Missing rolls!"));
     });
   });
 

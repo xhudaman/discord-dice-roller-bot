@@ -1,12 +1,12 @@
 export const getRandNum = (lowerLimit, upperLimit) => {
   if (!lowerLimit || !upperLimit) {
-    return new TypeError("Missing input!");
+    throw new TypeError("Missing input!");
   }
   if (lowerLimit < 1) {
     return new Error("lowerLimit must be 1 or greater!");
   }
   if (lowerLimit >= upperLimit) {
-    return new Error(
+    throw new Error(
       "lowerLimit cannot be greater than or equal to upperLimit!"
     );
   }
@@ -15,7 +15,7 @@ export const getRandNum = (lowerLimit, upperLimit) => {
 
 export const getTotalFromRolls = rolls => {
   if (!rolls) {
-    return new TypeError("Missing rolls!");
+    throw new TypeError("Missing rolls!");
   }
 
   const result = rolls.reduce((accumulator, currentValue) => {
@@ -49,11 +49,11 @@ const diceRoller = input => {
   const modifierRegex = /(\+|\-)\d+/g;
 
   if (!input) {
-    return new TypeError(`Missing input!`);
+    throw new TypeError(`Missing input!`);
   }
 
   if (!diceAndModifiersRegex.test(input)) {
-    return new Error("Invalid input format!");
+    throw new Error("Invalid input format!");
   }
 
   // (dice syntax) any digit, letter d, digit between 1-3 characters long, (modifier syntax) + or - a digit one or more times
