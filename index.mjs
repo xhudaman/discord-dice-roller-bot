@@ -9,7 +9,7 @@ const discordClient = new Discord.Client();
 const commandPrefix = "!";
 
 discordClient.on("message", message => {
-  if (!message.content.startsWith(commandPrefix) && message.author.bot) {
+  if (!message.content.startsWith(commandPrefix) || message.author.bot) {
     return;
   }
 
@@ -20,7 +20,7 @@ discordClient.on("message", message => {
 
   const command = args.shift().toLowerCase();
 
-  if (command === "roll" || "r") {
+  if (command === "roll" || command === "r") {
     // Zhu Li, do the thing!
     try {
       const diceRollString = args[0];
