@@ -1,8 +1,9 @@
-import Discord, { MessageEmbed } from "discord.js";
+import Discord from "discord.js";
 const clientAuthToken = process.env.DISCORD_CLIENT_AUTH_TOKEN;
 import roll, {
   getTotalFromRolls
 } from "./src/services/diceRoller/diceRollerService.mjs";
+import botResponse from "./src/botResponse/botResponse.mjs";
 
 const discordClient = new Discord.Client();
 
@@ -62,31 +63,19 @@ discordClient.on("message", message => {
         }
       };
 
-      console.log({ resultOfRolls: JSON.stringify(resultOfRolls), total });
-
-      let responseEmbed = new MessageEmbed();
-      responseEmbed.setTitle("Tymora's Game of Dice");
-      responseEmbed.setColor("#fd2870");
-      responseEmbed.setDescription(
-        `<@${
+      let response = botResponse({
+        description: `<@${
           message.author.id
         }> tested their luck!  The results are ${favourCheck(
           resultOfRolls
-        )}!\n Their total was: \`${total}\`` /*+
-        JSON.stringify(resultOfRolls)*/
-      );
+        )}!\n Their total was: \`${total}\``
+      });
 
-      message.channel.send(responseEmbed);
+      message.channel.send(response);
     } catch (error) {
-      let responseEmbed = new MessageEmbed();
-      responseEmbed.setTitle("Tymora's Game of Dice");
-      responseEmbed.setColor("#fd2870");
-      responseEmbed.setDescription(error.message);
-      message.channel.send(responseEmbed);
+      let response = botResponse({ description: error.message });
+      message.channel.send(response);
     }
-    // message.channel.send(
-    //   `@${message.author.username} rolled ${JSON.stringify(resultOfRoll)}`
-    // );
   }
 });
 
