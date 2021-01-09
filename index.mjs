@@ -3,6 +3,7 @@ const clientAuthToken = process.env.DISCORD_CLIENT_AUTH_TOKEN;
 import roll, {
   getTotalFromRolls
 } from "./src/services/diceRoller/diceRollerService.mjs";
+import getFavourabilityString from "./src/botResponse/favourabilityString.mjs";
 import botResponse from "./src/botResponse/botResponse.mjs";
 
 const discordClient = new Discord.Client();
@@ -28,45 +29,10 @@ discordClient.on("message", message => {
       const resultOfRolls = roll(diceRollString);
       const total = getTotalFromRolls(resultOfRolls);
 
-      let favourCheck = rolls => {
-        let averages = [];
-
-        rolls.forEach(currentRoll => {
-          Object.keys(currentRoll).forEach(key => {
-            if (key === "modifiers") {
-              return;
-            }
-            let diceSize = parseInt(key.match(/(?<=d)\d{1,3}/));
-            let totalOfRoll = currentRoll[key].reduce(
-              (accumulator, currentValue) => accumulator + currentValue,
-              0
-            );
-
-            if (totalOfRoll < (diceSize / 2 + 1) * currentRoll[key].length) {
-              averages.push(false);
-            } else {
-              averages.push(true);
-            }
-          });
-        });
-
-        let tally = averages
-          .map(average => (average ? 1 : -1))
-          .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-
-        if (tally <= -1) {
-          return "not very favourable";
-        } else if (tally >= 1) {
-          return "quite favourable";
-        } else {
-          return "relatively neutral";
-        }
-      };
-
       let response = botResponse({
-        description: `<@${
+        description: `**dev** <@${
           message.author.id
-        }> tested their luck!  The results are ${favourCheck(
+        }> tested their luck!  The results are ${getFavourabilityString(
           resultOfRolls
         )}!\n Their total was: \`${total}\``
       });
