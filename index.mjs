@@ -30,7 +30,7 @@ discordClient.on("message", message => {
       const total = getTotalFromRolls(resultOfRolls);
 
       let response = botResponse({
-        description: `**dev** <@${
+        description: `<@${
           message.author.id
         }> tested their luck!  The results are ${getFavourabilityString(
           resultOfRolls
