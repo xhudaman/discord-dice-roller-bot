@@ -1,14 +1,16 @@
 version: "3.7"
 services:
   bot:
-    image: node:14
-    command: sh -c "yarn install --immutable --production=false && yarn start"
-    user: node
+    build:
+      context: .
+      target: test
+    command: sh -c "yarn install --frozen-lockfile --non-interactive --production=false && yarn start"
     stdin_open: true
-    working_dir: /src
     ports:
       - 80:3000
     environment:
       DISCORD_CLIENT_AUTH_TOKEN: $DISCORD_CLIENT_AUTH_TOKEN
     volumes:
       - $PWD/:/src
+    tmpfs:
+      - /cache/yarn
