@@ -25,6 +25,10 @@
       "js",
       "jsx",
       "mjs"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
     ]
   },
   "scripts": {
