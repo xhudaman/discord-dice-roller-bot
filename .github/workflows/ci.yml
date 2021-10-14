@@ -5,20 +5,19 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: "Use Node.Js"
-      uses: actions/setup-node@v1
-      with:
-        node-version: "14.x"
-    - name: "Install Dependencies"
-      run: yarn install --frozen-lockfile
-    - name: "Run Tests"
-      run: yarn test
+      - uses: actions/checkout@v2
+      - name: "Use Node.Js"
+        uses: actions/setup-node@v1
+        with:
+          node-version: "15.x"
+      - name: "Install Dependencies"
+        run: yarn install --frozen-lockfile
+      - name: "Run Tests"
+        run: yarn test
