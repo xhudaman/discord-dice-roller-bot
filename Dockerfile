@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:experimental
 
-FROM node:15.3.0-alpine3.12 AS base
+FROM node:15-alpine AS base
 
 ENV YARN_CACHE_FOLDER=/cache/yarn
 
@@ -28,7 +28,7 @@ RUN \
   --mount=id=yarn-cache,type=cache,target=/cache/yarn \
   yarn install --frozen-lockfile --non-interactive --production=true
 
-FROM node:15.3.0-alpine3.12
+FROM node:15-alpine
 
 ARG DISCORD_CLIENT_AUTH_TOKEN
 
