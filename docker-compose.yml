@@ -10,7 +10,7 @@ services:
       - 80:3000
     environment:
       DISCORD_CLIENT_AUTH_TOKEN: $DISCORD_CLIENT_AUTH_TOKEN
-      NODE_ENV: development
+      NODE_ENV: test
       TEST_CHANNEL_ID: 787788250697170955
     volumes:
       - $PWD/:/src

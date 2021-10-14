@@ -19,5 +19,7 @@ jobs:
           node-version: "15.x"
       - name: "Install Dependencies"
         run: yarn install --frozen-lockfile
+      - name: Log NODE_ENV
+        run: echo ${NODE_ENV}
       - name: "Run Tests"
         run: yarn test
