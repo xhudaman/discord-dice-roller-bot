@@ -1,5 +1,7 @@
 const config = {
-  title: "Tymora's Game of Dice",
+  title: `${
+    process.env.NODE_ENV === "development" ? "**DEV** " : ""
+  } Tymora's Game of Dice`,
   color: "#fd2870"
 };
 

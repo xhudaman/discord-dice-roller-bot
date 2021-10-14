@@ -9,6 +9,7 @@ import botResponse from "./src/botResponse/botResponse.mjs";
 const discordClient = new Discord.Client();
 
 const commandPrefix = "!";
+const testChannelId = process.env.TEST_CHANNEL_ID;
 
 discordClient.on("message", message => {
   if (!message.content.startsWith(commandPrefix) || message.author.bot) {
@@ -18,7 +19,7 @@ discordClient.on("message", message => {
   const args = message.content
     .slice(commandPrefix.length)
     .trim()
-    .split(/(?<=roll|r) +/);
+    .split(/(?<=roll|r|src|source) +/);
 
   const command = args.shift().toLowerCase();
 
@@ -37,11 +38,45 @@ discordClient.on("message", message => {
         )}!\n Their total was: \`${total}\``
       });
 
+      if (
+        process.env.NODE_ENV === "development" &&
+        message.channel.id !== testChannelId
+      ) {
+        return;
+      }
+
       message.channel.send(response);
     } catch (error) {
       let response = botResponse({ description: error.message });
       message.channel.send(response);
     }
+  }
+
+  if (command === "src" || command === "source") {
+    let response = botResponse({
+      description: `<@${message.author.id}> Thank you for your interest in the Tymora bot!`,
+      fields: [
+        {
+          name: "Source Code",
+          value: "https://github.com/xhudaman/discord-dice-roller-bot",
+          inline: true
+        },
+        {
+          name: "Contributers",
+          value: "xhudaman",
+          inline: true
+        }
+      ]
+    });
+
+    if (
+      process.env.NODE_ENV === "development" &&
+      message.channel.id !== testChannelId
+    ) {
+      return;
+    }
+
+    message.channel.send(response);
   }
 });
 
