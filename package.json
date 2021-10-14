@@ -12,11 +12,15 @@
     "discord.js": "^12.5.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "babel-jest": "^27.2.5",
     "jest": "^27.2.5",
     "nodemon": "^2.0.6"
   },
   "jest": {
-    "transform": {},
+    "transform": {
+      "^.+\\.(js|mjs)$": "babel-jest"
+    },
     "testPathIgnorePatterns": [
       "<rootDir>/build/",
       "<rootDir>/node_modules/"
