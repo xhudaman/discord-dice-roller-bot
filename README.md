@@ -18,28 +18,28 @@ Tymora is a Discord bot for dice rolling, aptly named after the goddess from the
 
 ```bash
 # Use this command for https
-$ git clone https://github.com/xhudaman/discord-dice-roller-bot.git
+git clone https://github.com/xhudaman/discord-dice-roller-bot.git
 
 # Use this command for ssh
-$ git clone git@github.com:xhudaman/discord-dice-roller-bot.git
+git clone git@github.com:xhudaman/discord-dice-roller-bot.git
 ```
 
 2. Navigate into the project directory and run the following to get a terminal in the container:
 
 ```bash
-$ docker-compose run bot sh
+docker-compose run bot sh
 ```
 
 3. Inside the container's terminal run the following to install dependencies:
 
 ```bash
-$ yarn install
+yarn install
 ```
 
 4. Exit the container's shell
 
 ```bash
-$ exit
+exit
 ```
 
 5. Run `docker-compose up` to start the dev server.
