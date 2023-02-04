@@ -50,10 +50,10 @@ exit
 
 ### Commands
 
-| Command   | Description                                                                                          |
-| --------- | ---------------------------------------------------------------------------------------------------- |
-| `/roll`   | Rolls dice using standard dice notation. i.e. `/roll 1d20 + 2`                                       |
-| `/help`   | Prints out the help dialog explaining what commands are available and how to use them, if necessary. |
+|  Command  | Description                                                                                          |
+| :-------: | ---------------------------------------------------------------------------------------------------- |
+|  `/roll`  | Rolls dice using standard dice rolling notation. i.e. `/roll 1d20 + 2`                               |
+|  `/help`  | Prints out the help dialog explaining what commands are available and how to use them, if necessary. |
 | `/source` | Prints out a link to the source code (this repo) and a list of contributing authors for the project. |
 
 ### Rolling
@@ -61,6 +61,8 @@ exit
 #### Basic Roll
 
 To perform a basic roll use the roll command followed by the dice you want to roll.
+
+> **Note**: The dice rolling notation should be filled in as the `dice-string` option of the command. So in the following example the `dice-string` optin would be 1d20.
 
 ```
 /roll 1d20
