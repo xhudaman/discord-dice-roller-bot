@@ -1,22 +1,20 @@
 # syntax=docker/dockerfile:experimental
 
-FROM node:15-alpine AS base
+FROM node:lts-alpine AS base
 
 ENV YARN_CACHE_FOLDER=/cache/yarn
 
 WORKDIR /src
 
+RUN npm i -g pnpm
+
 FROM base AS test
 
 ENV NODE_ENV=development
-ENV NODE_OPTIONS=--experimental-vm-modules
 
 COPY . .
 
-RUN \
-  --mount=id=yarn-cache,type=cache,target=/cache/yarn \
-  --mount=id=node_modules,type=cache,target=/src/node_modules \
-  yarn ci
+RUN pnpm ci
 
 FROM base AS build
 
@@ -24,11 +22,9 @@ ENV NODE_ENV=production
 
 COPY --from=test . .
 
-RUN \
-  --mount=id=yarn-cache,type=cache,target=/cache/yarn \
-  yarn install --frozen-lockfile --non-interactive --production=true
+RUN pnpm i --frozen-lockfile --prod
 
-FROM node:15-alpine
+FROM node:lts-alpine
 
 ARG DISCORD_CLIENT_AUTH_TOKEN
 
