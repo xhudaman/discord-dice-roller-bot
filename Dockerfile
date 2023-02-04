@@ -2,8 +2,6 @@
 
 FROM node:lts-alpine AS base
 
-ENV YARN_CACHE_FOLDER=/cache/yarn
-
 WORKDIR /src
 
 RUN npm i -g pnpm
