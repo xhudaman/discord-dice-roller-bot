@@ -4,7 +4,7 @@ services:
     build:
       context: .
       target: test
-    command: sh -c "yarn install --frozen-lockfile --non-interactive --production=false && yarn start"
+    command: sh -c "pnpm i && pnpm start"
     stdin_open: true
     ports:
       - 80:3000
@@ -12,7 +12,7 @@ services:
       DISCORD_CLIENT_AUTH_TOKEN: $DISCORD_CLIENT_AUTH_TOKEN
       NODE_ENV: development
       TEST_CHANNEL_ID: 787788250697170955
+      GUILD_ID: 783594092268617766
+      BOT_CLIENT_ID: 787162425304154142
     volumes:
       - $PWD/:/src
-    tmpfs:
-      - /cache/yarn
