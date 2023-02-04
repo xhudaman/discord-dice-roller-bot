@@ -9,13 +9,13 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "discord.js": "^12.5.1"
+    "discord.js": "^14.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
     "babel-jest": "^27.2.5",
-    "jest": "^27.2.5",
+    "jest": "^29.4.1",
     "nodemon": "^2.0.6"
   },
   "jest": {
@@ -40,6 +40,6 @@
   "scripts": {
     "start": "nodemon index.mjs",
     "test": "jest",
-    "ci": "yarn install --frozen-lockfile --non-interactive && CI=true yarn test"
+    "ci": "pnpm i --frozen-lockfile && CI=true pnpm test"
   }
 }
