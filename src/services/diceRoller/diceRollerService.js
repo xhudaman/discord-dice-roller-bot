@@ -1,4 +1,4 @@
-export const getRandNum = (lowerLimit, upperLimit) => {
+const getRandNum = (lowerLimit, upperLimit) => {
   if (!lowerLimit || !upperLimit) {
     throw new TypeError("Missing input!");
   }
@@ -13,14 +13,14 @@ export const getRandNum = (lowerLimit, upperLimit) => {
   return Math.floor(Math.random() * upperLimit) + lowerLimit;
 };
 
-export const getTotalFromRolls = rolls => {
+const getTotalFromRolls = (rolls) => {
   if (!rolls) {
     throw new TypeError("Missing rolls!");
   }
 
   const result = rolls.reduce((accumulator, currentValue) => {
     let total = 0;
-    Object.keys(currentValue).forEach(key => {
+    Object.keys(currentValue).forEach((key) => {
       if (key === "modifiers") {
         for (let i = 0; i < currentValue[key].length; i++) {
           total += currentValue[key][i];
@@ -38,7 +38,7 @@ export const getTotalFromRolls = rolls => {
   return result;
 };
 
-const diceRoller = input => {
+const diceRoller = (input) => {
   // captures syntax 1d20+1 and any variation of it up to 3 digit dice sizes with a min of 1 die
   const diceAndModifiersRegex = /(\d{1,3}d\d{1,3})(((\+|\-)\d+)+)?/gi;
 
@@ -57,7 +57,7 @@ const diceRoller = input => {
   }
 
   // (dice syntax) any digit, letter d, digit between 1-3 characters long, (modifier syntax) + or - a digit one or more times
-  const splitInputToDiceRolls = diceString =>
+  const splitInputToDiceRolls = (diceString) =>
     diceString.match(diceAndModifiersRegex);
 
   const individualRolls = splitInputToDiceRolls(input).reduce(
@@ -65,7 +65,7 @@ const diceRoller = input => {
       let dice = currentValue.match(diceSyntaxRegex)[0];
 
       let modifiers = currentValue.match(modifierRegex);
-      modifiers = modifiers ? modifiers.map(value => parseInt(value)) : [];
+      modifiers = modifiers ? modifiers.map((value) => parseInt(value)) : [];
 
       let diceCount = parseInt(dice.match(/\d{1,3}(?=d)/g)[0]);
       let diceSize = parseInt(dice.match(/(?<=d)\d{1,3}/g)[0]);
@@ -85,4 +85,4 @@ const diceRoller = input => {
   return individualRolls;
 };
 
-export default diceRoller;
+module.exports = { roll: diceRoller, getRandNum, getTotalFromRolls };

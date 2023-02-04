@@ -33,7 +33,7 @@ docker-compose run bot sh
 3. Inside the container's terminal run the following to install dependencies:
 
 ```bash
-yarn install
+pnpm i
 ```
 
 4. Exit the container's shell
@@ -50,11 +50,11 @@ exit
 
 ### Commands
 
-| Command     | Aliases           | Description                                                                                          |
-| ----------- | ----------------- | ---------------------------------------------------------------------------------------------------- |
-| `!r`        | `!roll`           | Rolls dice. It's case insensitive so `!Roll`, `!R`, or even `!ROLL` will work.                       |
-| `!helpdice` | `!h`, `!commands` | Prints out the help dialog explaining what commands are available and how to use them, if necessary. |
-| `!src`      | `!source`         | Prints out a link to the source code (this repo) and a list of contributing authors for the project. |
+|  Command  | Description                                                                                          |
+| :-------: | ---------------------------------------------------------------------------------------------------- |
+|  `/roll`  | Rolls dice using standard dice rolling notation. i.e. `/roll 1d20 + 2`                               |
+|  `/help`  | Prints out the help dialog explaining what commands are available and how to use them, if necessary. |
+| `/source` | Prints out a link to the source code (this repo) and a list of contributing authors for the project. |
 
 ### Rolling
 
@@ -62,13 +62,15 @@ exit
 
 To perform a basic roll use the roll command followed by the dice you want to roll.
 
+> **Note**: The dice rolling notation should be filled in as the `dice-string` option of the command. So in the following example the `dice-string` optin would be 1d20.
+
 ```
-!r 1d20
+/roll 1d20
 ```
 
 In this scenario the number `1` in `1d20` indicates the amount of dice. The `d` indicates that the following number is the number of faces the desired dice have. In this case the dice to be rolled are 20 sided dice as noted `d20`.
 
-> Both the amount of dice and the number of faces on dice can be anywhere from `1-999`.
+> **Note**: Both the amount of dice and the number of faces on dice can be anywhere from `1-999`.
 
 #### Rolling with a Modifier
 

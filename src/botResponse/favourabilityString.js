@@ -1,8 +1,8 @@
-const getFavourabilityString = rolls => {
+const getFavourabilityString = (rolls) => {
   let averages = [];
 
-  rolls.forEach(currentRoll => {
-    Object.keys(currentRoll).forEach(key => {
+  rolls.forEach((currentRoll) => {
+    Object.keys(currentRoll).forEach((key) => {
       if (key === "modifiers") {
         return;
       }
@@ -38,4 +38,4 @@ const getFavourabilityString = rolls => {
   }
 };
 
-export default getFavourabilityString;
+module.exports = getFavourabilityString;

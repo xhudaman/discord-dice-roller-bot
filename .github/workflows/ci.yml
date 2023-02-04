@@ -16,8 +16,8 @@ jobs:
       - name: "Use Node.Js"
         uses: actions/setup-node@v2
         with:
-          node-version: "14.x"
+          node-version: "lts"
       - name: "Install Dependencies"
-        run: yarn install --frozen-lockfile
+        run: pnpm i --frozen-lockfile
       - name: "Run Tests"
-        run: yarn test
+        run: pnpm test

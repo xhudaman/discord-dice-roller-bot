@@ -1,8 +1,8 @@
-import roll, { getRandNum, getTotalFromRolls } from "./diceRollerService";
+const { roll, getRandNum, getTotalFromRolls } = require("./diceRollerService");
 
 describe("dice roller", () => {
   test("null, false, undefined, and empty string throws error", () => {
-    [null, false, undefined, ""].forEach(value => {
+    [null, false, undefined, ""].forEach((value) => {
       expect(() => {
         roll(value);
       }).toThrow(new TypeError(`Missing input!`));
@@ -22,8 +22,8 @@ describe("dice roller", () => {
     expect(result).toStrictEqual([
       expect.objectContaining({
         d20: expect.arrayContaining([expect.any(Number)]),
-        modifiers: []
-      })
+        modifiers: [],
+      }),
     ]);
     expect(result[0].d20).toHaveLength(1);
     expect(result[0].modifiers).toHaveLength(0);
@@ -36,8 +36,8 @@ describe("dice roller", () => {
     expect(result).toStrictEqual([
       expect.objectContaining({
         d10: expect.arrayContaining([expect.any(Number)]),
-        modifiers: expect.arrayContaining([1])
-      })
+        modifiers: expect.arrayContaining([1]),
+      }),
     ]);
     expect(result[0].d10).toHaveLength(1);
     expect(result[0].modifiers).toHaveLength(1);
@@ -49,8 +49,8 @@ describe("dice roller", () => {
     expect(result).toStrictEqual([
       expect.objectContaining({
         d20: expect.arrayContaining([expect.any(Number), expect.any(Number)]),
-        modifiers: []
-      })
+        modifiers: [],
+      }),
     ]);
     expect(result[0].d20).toHaveLength(2);
     expect(result[0].modifiers).toHaveLength(0);
@@ -63,8 +63,8 @@ describe("dice roller", () => {
     expect(result).toStrictEqual([
       expect.objectContaining({
         d20: expect.arrayContaining([expect.any(Number), expect.any(Number)]),
-        modifiers: expect.arrayContaining([1])
-      })
+        modifiers: expect.arrayContaining([1]),
+      }),
     ]);
     expect(result[0].d20).toHaveLength(2);
     expect(result[0].modifiers).toHaveLength(1);
@@ -77,8 +77,8 @@ describe("dice roller", () => {
     expect(result).toStrictEqual([
       expect.objectContaining({
         d20: expect.arrayContaining([expect.any(Number)]),
-        modifiers: expect.arrayContaining([-1])
-      })
+        modifiers: expect.arrayContaining([-1]),
+      }),
     ]);
     expect(result[0].d20).toHaveLength(1);
     expect(result[0].modifiers).toHaveLength(1);
@@ -91,12 +91,12 @@ describe("dice roller", () => {
     expect(result).toStrictEqual([
       expect.objectContaining({
         d20: expect.arrayContaining([expect.any(Number)]),
-        modifiers: []
+        modifiers: [],
       }),
       expect.objectContaining({
         d10: expect.arrayContaining([expect.any(Number)]),
-        modifiers: []
-      })
+        modifiers: [],
+      }),
     ]);
     expect(result[0].d20).toHaveLength(1);
     expect(result[1].d10).toHaveLength(1);
@@ -106,7 +106,7 @@ describe("dice roller", () => {
 
 describe("getRandNum", () => {
   test("getRandNum null, undefined, false, and empty input throws error", () => {
-    [null, false, undefined, ""].forEach(value => {
+    [null, false, undefined, ""].forEach((value) => {
       expect(() => {
         getRandNum(value, 20);
       }).toThrow(new TypeError("Missing input!"));
@@ -149,7 +149,7 @@ describe("getRandNum", () => {
 
 describe("getTotalFromRoll", () => {
   test("null, undefined, false, and empty inputs return error", () => {
-    [null, false, undefined, ""].forEach(value => {
+    [null, false, undefined, ""].forEach((value) => {
       expect(() => {
         getTotalFromRolls(value);
       }).toThrow(new TypeError("Missing rolls!"));
@@ -160,8 +160,8 @@ describe("getTotalFromRoll", () => {
     let rolls = [
       {
         d20: [15],
-        modifiers: []
-      }
+        modifiers: [],
+      },
     ];
 
     const result = getTotalFromRolls(rolls);
@@ -172,8 +172,8 @@ describe("getTotalFromRoll", () => {
     let rolls = [
       {
         d20: [10],
-        modifiers: [4]
-      }
+        modifiers: [4],
+      },
     ];
 
     const result = getTotalFromRolls(rolls);
@@ -184,8 +184,8 @@ describe("getTotalFromRoll", () => {
     let rolls = [
       {
         d20: [18],
-        modifiers: [-3]
-      }
+        modifiers: [-3],
+      },
     ];
 
     const result = getTotalFromRolls(rolls);
@@ -196,8 +196,8 @@ describe("getTotalFromRoll", () => {
     let rolls = [
       {
         d20: [18],
-        modifiers: [-4, 1]
-      }
+        modifiers: [-4, 1],
+      },
     ];
 
     const result = getTotalFromRolls(rolls);
@@ -208,12 +208,12 @@ describe("getTotalFromRoll", () => {
     let rolls = [
       {
         d20: [13],
-        modifiers: [2]
+        modifiers: [2],
       },
       {
         d8: [7],
-        modifiers: [-2]
-      }
+        modifiers: [-2],
+      },
     ];
 
     const result = getTotalFromRolls(rolls);
